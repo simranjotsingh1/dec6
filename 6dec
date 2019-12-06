@@ -1,0 +1,59 @@
+                                           Simranjot Singh
+                                            c0757409
+                                          December-6
+
+
+
+
+
+select * from datainput
+
+
+delete from datainput where Newsstory is null;
+
+
+
+write a sql statement to output the length of each rowset:-
+
+select count(newsstory) from datainput;
+
+
+select len(newsstory) from datainput;
+
+
+select len(newsstory),Newsstory from datainput
+order by len(newsstory);
+
+
+delete from datainput
+where len(newsstory) <= 76
+
+
+
+select * from datainput
+delete from datainput where newsstory IS NULL;
+select * from datainput
+
+Declare @TeslaWordCount as INT;
+select @TeslaWordCount =count(*)from datainput where upper(Newsstory)like'%TESLA%';
+print @TeslaWordCount
+
+declare @numberoflines INT;
+set @numberoflines=0;
+use dec6;
+declare mycursor CURSOR for select newsstory from datainput;
+open mycursor;
+declare @newsstory varchar(255);
+while @@FETCH_STATUS=0
+   BEGIN
+       fetch next from  mycursor into @newsstory;
+	   if ((upper(@newsstory) like '%TESLA%') and (upper(@newsstory) like '%musk%'))
+	   BEGIN
+	   set @numberoflines = @numberoflines+1;
+	   print @newsstory;
+	   END
+   END
+print @numberoflines;
+close mycursor;
+deallocate mycursor;
+
